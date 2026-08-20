@@ -244,7 +244,6 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
      tiene que dar para la linea larga (39 caracteres) sin volver a partir */
   font-size: clamp(1.5rem, 3.3vw, 2.5rem); font-weight: 700;
   letter-spacing: -.025em; margin: 1rem 0 1.25rem; max-width: 44ch;
-  text-wrap: balance;
 }
 .portada h1 em { font-style: italic; }
 .portada__bajada { font-size: clamp(1rem, 1.6vw, 1.1rem); color: var(--muted-fg); max-width: 42rem; margin: 0 0 2.25rem; }
