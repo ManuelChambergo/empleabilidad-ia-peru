@@ -32,6 +32,33 @@
     { f: 3, nom: "Mención genérica", serie: 4, glosa: "El aviso dice «Inteligencia Artificial» sin precisar qué espera." },
   ];
 
+  // Las siete cosas distintas que una empresa puede querer decir con «IA».
+  // Se reconocen por las herramientas que nombra el aviso, y no son
+  // excluyentes: construir y poner en produccion casi siempre van juntas.
+  const FUNCIONES = [
+    { nom: "Construir IA", serie: 1,
+      glosa: "Diseñar, entrenar y armar modelos o agentes.",
+      re: /pytorch|tensorflow|keras|scikit|xgboost|lightgbm|deep learning|^machine learning$|\bllm|large language|\brag\b|langchain|langgraph|llamaindex|embeddings|fine-tuning|transformer|hugging face|agentes de ia|ai agents|agentic|autogen|crewai|tool calling|\bmcp|chatbots|conversational ai|\bnlp\b|natural language|computer vision|opencv|yolo|object detection|\bocr\b|llama|semantic kernel|reinforcement|cuda|deepspeed|fsdp|mixed-precision|gpu accel|tensorrt|model optimization|llm applications|llm apis?|openai apis?|anthropic api|azure openai|amazon bedrock|azure ai|vertex ai|asistentes virtuales|intent classification|data science|machine learning engineering/ },
+    { nom: "Poner la IA en producción", serie: 1,
+      glosa: "Desplegar, escalar y vigilar que siga funcionando.",
+      re: /mlops|llmops|mlflow|model deployment|model serving|model monitoring|monitoreo de modelos|sagemaker endpoints|cloud composer|apache airflow|azure ml|aws sagemaker|evaluación de modelos|model evaluation|validación de modelos|llm evaluation/ },
+    { nom: "Automatizar procesos con IA", serie: 3,
+      glosa: "Quitar de en medio el trabajo repetitivo.",
+      re: /^rpa$|automatización|automation anywhere|power automate|n8n|workflow automation|agent orchestration|agentic workflows|copilot studio|ai builder/ },
+    { nom: "Predecir y decidir con IA", serie: 3,
+      glosa: "Pronosticar, segmentar y sostener decisiones con datos.",
+      re: /forecasting|modelos predictivos|modelado predictivo|analítica predictiva|análisis predictivo|series de tiempo|prophet|clustering|k-means|segmentación|recommendation|collaborative filtering|multi-armed|riesgo crediticio|data mining|modelado estadístico/ },
+    { nom: "Gobernar la IA", serie: 2,
+      glosa: "Estrategia, estándares y reglas de uso.",
+      re: /ai governance|gobierno de datos|gobernanza/ },
+    { nom: "Programar con IA", serie: 2,
+      glosa: "Escribir código asistido por la herramienta.",
+      re: /github copilot|^copilot$|^microsoft copilot$|cursor|claude code/ },
+    { nom: "Usar la IA como herramienta", serie: 4, suelta: true,
+      glosa: "Manejar el chat y nada más: sin construir ni desplegar.",
+      re: /^chatgpt$|^gemini$|^claude$|^openai$|^gpt$|prompt engineering|^ia generativa$|^generative ai$|inteligencia artificial generativa|perplexity|notebooklm/ },
+  ];
+
   // El pipeline guarda estos valores sin tilde. Se muestran bien escritos.
   const ROTULO = {
     Tecnico: "Técnico", Magister: "Magíster", Direccion: "Dirección",
@@ -243,6 +270,7 @@
     pintarKpis(vs, n);
     pintarApilada(vs, n);
     pintarUso(vs, n);
+    pintarFunciones(vs);
     pintarHabilidades(vs, n);
     pintarMatriz(vs, n);
     pintarDiagnostico(vs);
@@ -350,7 +378,50 @@
     $('[data-golpe="pct"]').textContent = pct(soloUso, n);
   }
 
-  // ── 03 · habilidades ────────────────────────────────────────────────
+  // ── 03 · para qué te piden la IA ────────────────────────────────────
+  function pintarFunciones(vs) {
+    const cont = $("#barras-fn");
+    cont.replaceChildren();
+    // La base son los avisos que nombran IA: preguntar «para que la quieren»
+    // en un aviso que no la pide no tiene sentido.
+    const conIA = vs.filter(v => v.sk.some(id => SKILLS[id]?.ia > 0));
+    const n = conIA.length;
+    $("#fn-base").textContent = nf.format(n);
+
+    if (!n) {
+      cont.innerHTML = '<p class="vacio">Ningún aviso del filtro nombra IA.</p>';
+      return;
+    }
+
+    const nombres = v => v.sk.map(id => SKILLS[id]?.n.toLowerCase()).filter(Boolean);
+    const cae = (v, f) => nombres(v).some(x => f.re.test(x));
+    // «Usar la IA como herramienta» solo cuenta cuando NO hay nada de construir:
+    // si el aviso pide ChatGPT y PyTorch, el trabajo es construir.
+    const construir = FUNCIONES[0];
+    const toca = (v, f) => f.suelta ? (cae(v, f) && !cae(v, construir)) : cae(v, f);
+
+    FUNCIONES.map(f => ({ f, k: conIA.filter(v => toca(v, f)).length }))
+      .sort((a, b) => b.k - a.k)
+      .forEach(({ f, k }) => {
+        const it = document.createElement("div");
+        it.className = "barra-it";
+        it.innerHTML =
+          `<div class="barra-it__cab">
+             <span class="barra-it__nom">${f.nom}</span>
+             <span><span class="barra-it__val">${pct(k, n)}</span>
+                   <span class="barra-it__n">· ${nf.format(k)} avisos</span></span>
+           </div>
+           <div class="barra-it__pista"><div class="barra-it__relleno"
+                style="background:var(--serie-${f.serie})"></div></div>
+           <p class="barra-it__glosa">${f.glosa}</p>`;
+        cont.append(it);
+        requestAnimationFrame(() => {
+          it.querySelector(".barra-it__relleno").style.width = `${k / n * 100}%`;
+        });
+      });
+  }
+
+  // ── 04 · habilidades ────────────────────────────────────────────────
   function pintarHabilidades(vs, n) {
     const todas = contarSkills(vs);
 
