@@ -197,7 +197,7 @@ a { color: inherit; }
   box-shadow: 0 2px 10px -4px oklch(0.18 0 0 / 0.35);
 }
 .barra__sello svg { display: block; }
-.barra__marca strong { display: block; font-family: var(--font-display); font-size: 1.02rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.15; }
+.barra__marca strong { display: block; font-family: var(--font-display); font-size: .95rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.25; }
 .barra__marca span { display: block; font-size: .68rem; letter-spacing: .01em; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); margin-top: .1rem; }
 
 .barra__nav { display: flex; flex-direction: column; gap: .1rem; flex: 1; overflow-y: auto; }
@@ -230,6 +230,24 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 }
 .portada h1 em { font-style: italic; }
 .portada__bajada { font-size: clamp(1rem, 1.6vw, 1.1rem); color: var(--muted-fg); max-width: 42rem; margin: 0 0 2.25rem; }
+
+/* ── Sello de muestra ───────────────────────────────────────────────
+   Va arriba a la derecha, estatico y no flotante: fijo se leeria como un
+   banner de cookies. Es un enlace a la ficha tecnica, para que quien dude
+   del alcance llegue de un clic a los sesgos declarados. */
+.portada__cab { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.sello-muestra {
+  flex: none; text-decoration: none;
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted-fg);
+  background: oklch(1 0 0 / 0.55); backdrop-filter: blur(10px);
+  border: 0.5px solid var(--border-fuerte); border-radius: 99px;
+  padding: .38rem .8rem; min-height: 1.9rem;
+  transition: border-color .18s, color .18s;
+}
+.sello-muestra:hover { border-color: var(--champagne); color: var(--foreground); }
+.sello-muestra__punto { width: .42rem; height: .42rem; border-radius: 50%; background: var(--champagne); flex: none; }
 
 /* ── KPIs ───────────────────────────────────────────────────────── */
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr)); gap: .8rem; }
