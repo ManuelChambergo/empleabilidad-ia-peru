@@ -23,7 +23,7 @@
     { id: "Puesto de IA",            serie: 1, glosa: "El rol nació con la IA como razón de ser." },
     { id: "Tradicional que pide IA", serie: 2, glosa: "El puesto existía antes y ahora la exige." },
     { id: "Datos sin IA",            serie: 3, glosa: "Analítica y datos, sin mención de IA." },
-    { id: "Sin IA ni datos",         serie: 4, glosa: "Ni IA ni trabajo de datos." },
+    { id: "Sin IA ni datos",         serie: 4, glosa: "Ni una cosa ni la otra: lo que la búsqueda dejó pasar de más." },
   ];
 
   const CUBOS_IA = [
@@ -262,7 +262,7 @@
     set("transformados", pct(trans, n));
     set("transformados-pie", `${nf.format(trans)} avisos · el puesto existía antes`);
     set("algo-ia", pct(algo, n));
-    set("algo-ia-pie", `${nf.format(algo)} avisos · usarla, construirla o mencionarla`);
+    set("algo-ia-pie", `${nf.format(algo)} avisos nombran alguna habilidad de IA`);
   }
 
   function pintarApilada(vs, n) {
@@ -368,8 +368,9 @@
       tbody.append(tr);
     });
 
-    // Solo dominios de IA estricta: los siete que declara la nota al pie.
-    const soloIA = contarSkills(vs, s => s && s.ia > 0);
+    // Solo dominios de IA estricta, y solo lo concreto: «Inteligencia
+    // Artificial» a secas se llama igual que la categoria y confunde.
+    const soloIA = contarSkills(vs, s => s && (s.ia === 1 || s.ia === 2));
     pintarRank($("#rank-ia"), soloIA.slice(0, 14).map(([id, k]) => ({
       nom: SKILLS[id].n, k, color: familia(id).serie,
     })), n);
@@ -453,8 +454,8 @@
       $('[data-par="txt"]').innerHTML =
         `de los <strong>${nf.format(mejor.base)}</strong> avisos que piden ` +
         `<strong>${esc(mejor.a)}</strong> piden también <strong>${esc(mejor.b)}</strong> ` +
-        `(${nf.format(mejor.k)} avisos). Aprender una sin la otra deja la mitad del ` +
-        `requisito sin cubrir.`;
+        `(${nf.format(mejor.k)} avisos). Es la pareja más inseparable de la matriz: ` +
+        `aprender una sin la otra deja medio requisito sin cubrir.`;
     } else {
       $("#golpe-par").hidden = true;
     }
