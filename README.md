@@ -22,7 +22,7 @@ python -m http.server 8765
 python export_json.py
 ```
 
-Vuelca el corpus completo de Neon a `site/data/`. No hay backend: los 544 avisos
+Vuelca todos los avisos de la base a `site/data/`. No hay backend: los 544 avisos
 viajan al navegador (380 KB en total) y cada cifra se recalcula ahí al mover un
 filtro. Eso hace que los filtros respondan al instante y que el sitio se pueda
 publicar en GitHub Pages sin ningún servidor.
@@ -31,7 +31,7 @@ publicar en GitHub Pages sin ningún servidor.
 |---|---|
 | `data/avisos.json` | Los 544 avisos: puesto, empresa, sector, región, nivel, tipo de oferta, fecha, habilidades, estudios |
 | `data/skills.json` | Diccionario de habilidades: nombre, dominio, y si la IA que piden es de uso, técnica o una mención genérica |
-| `data/meta.json` | Cobertura del corpus, portales, consultoras y campos sin dato |
+| `data/meta.json` | Cobertura de la muestra, portales, consultoras y campos sin dato |
 
 ## Estructura
 

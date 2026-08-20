@@ -256,8 +256,8 @@
     const algo  = vs.filter(v => v.sk.some(id => [1, 2, 3].includes(SKILLS[id]?.ia))).length;
 
     set("avisos", nf.format(n));
-    set("avisos-pie", n === META.avisos ? "el corpus completo"
-                                        : `de ${nf.format(META.avisos)} del corpus`);
+    set("avisos-pie", n === META.avisos ? "todos los avisos analizados"
+                                        : `de ${nf.format(META.avisos)} en total`);
     set("empresas", nf.format(new Set(vs.map(v => v.e)).size));
     set("transformados", pct(trans, n));
     set("transformados-pie", `${nf.format(trans)} avisos · el puesto existía antes`);
