@@ -240,8 +240,14 @@ a { color: inherit; }
 .barra__nav a[aria-current="true"] i { color: var(--champagne); font-weight: 700; }
 
 .barra__pie { padding: 0 .5rem; border-top: 0.5px solid var(--border); padding-top: .9rem; }
-.barra__pie p { margin: 0 0 .25rem; font-size: .58rem; text-transform: uppercase; letter-spacing: .18em; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); }
-.barra__pie strong { font-size: .82rem; font-weight: 700; color: var(--foreground); }
+.barra__pie p { margin: 0; font-size: .68rem; line-height: 1.55; color: color-mix(in oklab, var(--muted-fg) 90%, transparent); }
+.barra__pie__rot {
+  font-size: .55rem !important; text-transform: uppercase; letter-spacing: .18em;
+  color: var(--champagne) !important; margin-bottom: .45rem !important;
+}
+.barra__pie b { color: var(--foreground); font-weight: 700; }
+.barra__pie a { color: var(--champagne); text-decoration: underline; text-underline-offset: .18em; text-decoration-thickness: .5px; }
+.barra__pie a:hover { text-decoration-thickness: 1.5px; }
 .barra__pie a { font-size: .75rem; color: var(--muted-fg); text-decoration: none; }
 .barra__pie a:hover { color: var(--champagne); }
 
