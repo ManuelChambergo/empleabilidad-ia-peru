@@ -275,6 +275,26 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 .kpi--destaca .kpi__num { color: var(--champagne); }
 .kpi__pie { font-size: .72rem; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); line-height: 1.45; }
 
+/* ── Atajos de portada ──────────────────────────────────────────────
+   El indice de secciones ya vive en la barra lateral; esto es para quien
+   llega desde un enlace y quiere ir directo a lo suyo sin buscar. */
+.atajos { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1.6rem; }
+.atajos__rot {
+  font-size: .625rem; text-transform: uppercase; letter-spacing: .15em;
+  color: color-mix(in oklab, var(--muted-fg) 85%, transparent); margin-right: .25rem;
+}
+.atajos a {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-size: .78rem; text-decoration: none; color: var(--muted-fg);
+  background: oklch(1 0 0 / 0.5); backdrop-filter: blur(10px);
+  border: 0.5px solid var(--border-fuerte); border-radius: 99px;
+  padding: .4rem .85rem; min-height: 2rem;
+  transition: border-color .18s, color .18s, background .18s;
+}
+.atajos a::after { content: "→"; font-size: .8em; opacity: .5; transition: transform .18s, opacity .18s; }
+.atajos a:hover { border-color: var(--champagne); color: var(--foreground); background: oklch(1 0 0 / 0.75); }
+.atajos a:hover::after { transform: translateX(2px); opacity: 1; }
+
 /* ── Filtros ────────────────────────────────────────────────────── */
 .filtros {
   position: sticky; top: .75rem; z-index: 15;
