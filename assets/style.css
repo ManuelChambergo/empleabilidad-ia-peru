@@ -408,6 +408,51 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 .nota { margin: 1.35rem 0 0; padding-left: .85rem; border-left: 2px solid var(--border-fuerte); font-size: .765rem; color: color-mix(in oklab, var(--muted-fg) 88%, transparent); line-height: 1.6; }
 .nota em { font-style: normal; font-weight: 600; color: var(--foreground); }
 
+/* Nota plegable · el rigor metodologico se conserva entero pero deja de
+   costar scroll: por defecto solo se ve el rotulo. */
+details.nota { padding-left: 0; border-left: 0; margin-top: 1.1rem; }
+details.nota > summary {
+  cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .72rem; font-weight: 500; color: var(--muted-fg);
+  padding: .3rem .6rem .3rem 0; min-height: 1.9rem;
+}
+details.nota > summary::-webkit-details-marker { display: none; }
+details.nota > summary::before {
+  content: "+"; font-family: var(--font-mono); font-size: .8rem; line-height: 1;
+  width: 1.05rem; height: 1.05rem; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0.5px solid var(--border-fuerte); border-radius: 4px;
+  transition: background .18s, border-color .18s, color .18s;
+}
+details.nota[open] > summary::before { content: "−"; background: var(--champagne); border-color: var(--champagne); color: #fff; }
+details.nota > summary:hover { color: var(--foreground); }
+details.nota > summary:hover::before { border-color: var(--champagne); }
+details.nota > div {
+  padding-left: .85rem; border-left: 2px solid var(--border-fuerte);
+  font-size: .765rem; line-height: 1.6; margin-top: .35rem;
+}
+details.nota > div > p { margin: 0; }
+details.nota > div > p + p { margin-top: .6rem; }
+
+/* Metodo en acordeon: seis tarjetas plegadas ocupan lo que antes una */
+.metodo details.tarjeta { padding-block: .35rem; }
+.metodo details.tarjeta > summary {
+  cursor: pointer; list-style: none; padding: .85rem 0;
+  display: flex; align-items: center; gap: .7rem;
+}
+.metodo details.tarjeta > summary::-webkit-details-marker { display: none; }
+.metodo details.tarjeta > summary h3 {
+  font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 0;
+}
+.metodo details.tarjeta > summary::after {
+  content: "+"; margin-left: auto; font-family: var(--font-mono); color: var(--muted-fg);
+  font-size: .95rem; line-height: 1;
+}
+.metodo details.tarjeta[open] > summary::after { content: "−"; color: var(--champagne); }
+.metodo details.tarjeta > summary:hover h3 { color: var(--champagne); }
+.metodo details.tarjeta > div { padding-bottom: 1rem; }
+.metodo details.tarjeta > div > p:first-child { margin-top: 0; }
+
 .aviso { padding: 1.1rem 1.3rem; border-radius: var(--radius-xl); border-left: 2px solid var(--champagne); }
 .aviso p { margin: 0; font-size: .85rem; color: var(--muted-fg); }
 .aviso p + p { margin-top: .6rem; }
