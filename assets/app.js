@@ -648,8 +648,6 @@
       ordenar(contarCampo(vs, "m"), ["Remoto", "Hibrido", "Presencial", "No especificado"])
         .map(([nom, k]) => ({ nom: rot(nom), k, color: "var(--serie-4)" })), n, { escala: "total" });
 
-    $("#sin-modalidad").textContent = nf.format(
-      vs.filter(v => v.m === "No especificado").length);
   }
 
   // ── 07 · formación ──────────────────────────────────────────────────
