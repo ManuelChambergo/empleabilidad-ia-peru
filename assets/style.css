@@ -568,6 +568,15 @@ details.nota > div > p + p { margin-top: .6rem; }
 
 .pie { padding-top: 3.5rem; border-top: 0.5px solid var(--border); margin-top: 4rem; }
 .pie p { margin: 0 0 .4rem; font-size: .82rem; color: var(--muted-fg); }
+/* Quien llega por un enlace reenviado no vio el post: aqui se le dice de una
+   vez que es esto, quien lo hizo y que no pretende ser. */
+.pie__que {
+  max-width: 46rem; margin-bottom: 1.1rem !important; padding: 1rem 1.2rem;
+  border-radius: var(--radius-xl); border: 0.5px solid var(--border-fuerte);
+  background: oklch(1 0 0 / 0.5); line-height: 1.65;
+}
+.pie__que b { color: var(--foreground); }
+.pie__que a { color: var(--champagne); text-underline-offset: .2em; }
 .pie__fino { font-size: .74rem !important; color: color-mix(in oklab, var(--muted-fg) 85%, transparent) !important; }
 
 .vacio { padding: 2.5rem 1rem; text-align: center; color: var(--muted-fg); font-size: .88rem; }
