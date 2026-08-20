@@ -267,10 +267,10 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 .sello-muestra {
   flex: none; text-decoration: none;
   display: inline-flex; align-items: center; gap: .45rem;
-  font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--muted-fg);
-  background: oklch(1 0 0 / 0.55); backdrop-filter: blur(10px);
-  border: 0.5px solid var(--border-fuerte); border-radius: 99px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--foreground);
+  background: oklch(1 0 0 / 0.75); backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in oklab, var(--champagne) 55%, transparent); border-radius: 99px;
   padding: .38rem .8rem; min-height: 1.9rem;
   transition: border-color .18s, color .18s;
 }
