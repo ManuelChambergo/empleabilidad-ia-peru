@@ -340,7 +340,7 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 
 /* ── Filtros ────────────────────────────────────────────────────── */
 .filtros {
-  position: sticky; top: .75rem; z-index: 15;
+  /* sin sticky: pegada arriba tapaba el titular de cada seccion al bajar */
   display: flex; flex-wrap: nowrap; align-items: center; gap: 1rem 1.35rem;
   padding: .8rem 1.1rem; margin-block: 1.25rem 3rem;
   border-radius: var(--radius-xl);
@@ -372,7 +372,7 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 .limpiar:hover { color: var(--champagne); border-color: var(--champagne); }
 
 /* ── Secciones ──────────────────────────────────────────────────── */
-.seccion { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; scroll-margin-top: 7rem; }
+.seccion { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; scroll-margin-top: 1.5rem; }
 .seccion h2 {
   font-family: var(--font-display); font-size: clamp(1.45rem, 2.9vw, 2.05rem);
   font-weight: 700; letter-spacing: -.02em; max-width: 30ch; margin: .75rem 0 1rem;
