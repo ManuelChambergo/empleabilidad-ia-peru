@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="¿Qué habilidades y perfiles está pidiendo el mercado peruano en IA?">
 <meta name="twitter:description" content="En los avisos peruanos de IA y datos, 3 de cada 10 son puestos de siempre que ahora exigen inteligencia artificial. 544 avisos analizados.">
 <meta name="twitter:image" content="https://manuelchambergo.github.io/empleabilidad-ia-peru/og.png">
-<link rel="stylesheet" href="assets/style.css?v=202608200051">
+<link rel="stylesheet" href="assets/style.css?v=202608200054">
 </head>
 <body>
 
@@ -169,9 +169,7 @@
         del rol (<i>ML Engineer</i>, <i>Data Scientist</i>, <i>AI Product Manager</i>).
         <em>Tradicional que pide IA</em>: el título no la nombra, pero el aviso
         exige al menos una habilidad de un dominio de IA estricto.
-        <em>Datos sin IA</em>: analítica y datos, sin IA.
-        Sumar las dos primeras y llamarlo «% de IA» mezclaría creación de empleo
-        con transformación de empleo existente, que son cosas distintas.</p></div>
+        <em>Datos sin IA</em>: analítica y datos, sin mención de IA.</p></div>
       </details>
     </figure>
   </section>
@@ -259,9 +257,9 @@
         <summary>Qué cuenta como IA aquí</summary>
         <div><p>Solo las habilidades de siete dominios:
         <em>Generative AI, AI Agents, Machine Learning, Deep Learning, NLP,
-        Computer Vision y MLOps</em>. <i>Data Engineering</i> y <i>Analytics</i>
-        quedan fuera a propósito — son trabajo de datos, y meterlos adentro es lo
-        que infla las cifras de IA hasta volverlas indefendibles.</p></div>
+        Computer Vision y MLOps</em>. El trabajo de datos —<i>Data Engineering</i>,
+        <i>Analytics</i>— cuenta aparte: viene antes de la IA y no es lo
+        mismo.</p></div>
       </details>
     </figure>
   </section>
@@ -381,11 +379,11 @@
         </figcaption>
         <div class="rank" id="rank-sector"></div>
         <details class="nota">
-        <summary>Tecnología domina por construcción</summary>
-        <div><p>Buscamos por palabras clave de
-          IA y datos, así que el sector que vende tecnología iba a salir primero
-          pase lo que pase. Lo informativo son los que vienen detrás: banca,
-          telecomunicaciones y seguros piden IA sin ser empresas de tecnología.</p></div>
+        <summary>Mira los que vienen detrás de Tecnología</summary>
+        <div><p>Que el sector tecnológico encabece era previsible: la búsqueda
+          partió de palabras clave de IA y datos. Lo interesante es quién le sigue.
+          Banca, telecomunicaciones y seguros piden IA sin ser empresas de
+          tecnología.</p></div>
       </details>
       </figure>
     </div>
@@ -458,13 +456,6 @@
         <p class="tarjeta__n"><span data-n="niv">544</span> avisos · nivel derivado del título del puesto</p>
       </figcaption>
       <div class="rank" id="rank-nivel"></div>
-      <details class="nota">
-        <summary>Por qué el nivel sale del título y no del modelo</summary>
-        <div><p>Pedirle el
-        seniority a un LLM daba 42% de acierto en <i>Analista</i> y 28% en
-        <i>Jefatura</i>. Una regla sobre el título del puesto los subió a 100% y
-        96%. El modelo solo decide cuando el título no da ninguna señal.</p></div>
-      </details>
     </figure>
   </section>
 
@@ -525,30 +516,30 @@
         <summary><h3>3 · La limpieza</h3></summary>
         <div>
         <p>
-          Los datos crudos traen problemas que no fallan de forma ruidosa: devuelven
-          cifras que se ven razonables y están mal. Se corrigen cuatro, en orden:
+          Los datos en bruto traen errores que no saltan a la vista: producen cifras
+          que parecen razonables y están mal. Se corrigen cuatro, en orden:
           <strong>avisos republicados</strong> que contarían varias veces, <strong>la
           misma habilidad escrita de dos maneras</strong>, <strong>el nivel del
           puesto</strong> y <strong>la clasificación de la oferta</strong>, para que
-          un lenguaje de programación no arrastre el aviso al cubo de la IA.
+          un lenguaje de programación no arrastre el aviso al grupo de la IA.
         </p>
       </div>
       </details>
 
       <details class="tarjeta glass-strong">
-        <summary><h3>4 · Los sesgos que sí conocemos</h3></summary>
+        <summary><h3>4 · Límites de la muestra</h3></summary>
         <div>
         <ul>
           <li><strong>Muestra no probabilística.</strong> Dos portales, no un censo.
             Sobre-representa empresas formales medianas y grandes; no cubre pymes,
             bolsas internas ni el sector informal.</li>
-          <li><strong>Sesgo de consultoras.</strong> 181 avisos (33,3%) son de
-            consultoras y <i>staffing</i> regional. Por eso el interruptor está
-            arriba y no en una nota al pie.</li>
-          <li><strong>Faltaron búsquedas por correr.</strong> Cinco términos
-            quedaron fuera, entre ellos <i>Computer Vision</i> y <i>NLP Engineer</i>.
-            Por eso esos dominios salen bajos: <strong>no se buscaron</strong>, que
-            no es lo mismo que no existir.</li>
+          <li><strong>Un tercio son consultoras.</strong> 181 avisos (33,3%) vienen
+            de consultoras y <i>staffing</i> regional, que contratan para clientes
+            de fuera del país. El interruptor de arriba los saca del cálculo.</li>
+          <li><strong>Cinco términos quedaron sin buscar</strong>, entre ellos
+            <i>Computer Vision</i> y <i>NLP Engineer</i>. Esos dominios salen bajos
+            porque <strong>no se buscaron</strong>, que no es lo mismo que no
+            existir.</li>
           <li><strong>Sesgo de idioma, corregido a medias.</strong> Las búsquedas en
             inglés traían consultoras; las que se hicieron en español trajeron
             mercado local. El balance sigue inclinado.</li>
@@ -575,7 +566,7 @@
           <li><strong>«Este puesto paga X».</strong> 521 avisos sin salario.</li>
         </ul>
         <details class="nota">
-        <summary>Por qué hay tres cubos y no dos</summary>
+        <summary>Por qué son tres categorías y no dos</summary>
         <div><p>Lo natural sería partir la IA en
           dos, usarla o construirla, y quedarse ahí. No alcanza: el aviso que dice
           «conocimientos en Inteligencia Artificial» y nada más no declara cuál de
@@ -599,6 +590,6 @@
 
 </main>
 
-<script src="assets/app.js?v=202608200051"></script>
+<script src="assets/app.js?v=202608200054"></script>
 </body>
 </html>

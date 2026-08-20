@@ -627,10 +627,9 @@
 
     const cola = emp.filter(([, k]) => k === 1).length;
     $("#emp-cola").innerHTML =
-      `<b>La cola es larguísima.</b> ${nf.format(cola)} de las ` +
-      `${nf.format(emp.length)} empresas publicaron un solo aviso ` +
-      `(${pct(cola, emp.length)}). No hay un puñado de empresas moviendo el ` +
-      `mercado: hay muchísimas pidiendo una cosa cada una.`;
+      `<b>No hay un puñado de empresas moviendo el mercado.</b> ` +
+      `${nf.format(cola)} de las ${nf.format(emp.length)} publicaron un solo aviso ` +
+      `(${pct(cola, emp.length)}): son muchísimas pidiendo una cosa cada una.`;
 
     pintarRank($("#rank-sector"), contarCampo(vs, "s").slice(0, 12).map(([nom, k]) => ({
       nom, k, color: "var(--serie-1)",
