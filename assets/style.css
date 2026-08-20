@@ -584,6 +584,9 @@ details.nota > div > p + p { margin-top: .6rem; }
 .pie__que b { color: var(--foreground); }
 .pie__que a { color: var(--champagne); text-underline-offset: .2em; }
 .pie__fino { font-size: .74rem !important; color: color-mix(in oklab, var(--muted-fg) 85%, transparent) !important; }
+.pie__firma { font-size: .76rem !important; margin-top: .9rem !important; padding-top: .9rem; border-top: 0.5px solid var(--border); }
+.pie__firma a { color: var(--foreground); font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--champagne); padding-bottom: 1px; }
+.pie__firma a:hover { color: var(--champagne); }
 
 .vacio { padding: 2.5rem 1rem; text-align: center; color: var(--muted-fg); font-size: .88rem; }
 
