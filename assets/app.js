@@ -678,21 +678,6 @@
       })), n);
   }
 
-  // ── 08 · tabla de datos faltantes ───────────────────────────────────
-  // Sale de meta.json: describe el corpus entero, no el filtro. Un dato que
-  // falta no deja de faltar porque filtres.
-  function pintarSinDato() {
-    const filas = [
-      ["Salario", META.sin_dato.salario, "los avisos peruanos casi nunca publican rango"],
-      ["Modalidad", META.sin_dato.modalidad, "no dicen si es remoto, híbrido o presencial"],
-      ["Ciudad", META.sin_dato.ciudad, "no declaran dónde se trabaja"],
-      ["Nivel del puesto", META.sin_dato.nivel, "el título no da ninguna señal de seniority"],
-    ];
-    $("#sin-dato").innerHTML = filas.map(([campo, k, glosa]) =>
-      `<tr><th scope="row">${campo}<br><span class="dato-glosa">${glosa}</span></th>` +
-      `<td>${nf.format(k)}</td><td>${pct(k, META.avisos)}</td></tr>`).join("");
-  }
-
   // ── spotlight ───────────────────────────────────────────────────────
   // El halo champagne sigue al cursor dentro de cada tarjeta .spotlight.
   // Se apaga con reduced-motion: es decoracion, no informacion.
@@ -734,7 +719,6 @@
     leerPerfil();
     pintarChips();
     conectarPerfil();
-    pintarSinDato();
     conectarNav();
     pintar();
   }).catch(err => {
