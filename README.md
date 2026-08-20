@@ -2,7 +2,7 @@
 
 Dashboard sobre la demanda de habilidades de inteligencia artificial en el
 mercado laboral peruano. **544 avisos de empleo · 269 empresas · agosto 2026**,
-capturados en LinkedIn y Laborum.
+capturados en dos bolsas de trabajo del Perú.
 
 ## Cómo verlo en local
 
