@@ -395,10 +395,13 @@
 
     const nombres = v => v.sk.map(id => SKILLS[id]?.n.toLowerCase()).filter(Boolean);
     const cae = (v, f) => nombres(v).some(x => f.re.test(x));
-    // «Usar la IA como herramienta» solo cuenta cuando NO hay nada de construir:
-    // si el aviso pide ChatGPT y PyTorch, el trabajo es construir.
-    const construir = FUNCIONES[0];
-    const toca = (v, f) => f.suelta ? (cae(v, f) && !cae(v, construir)) : cae(v, f);
+    // «Usar la IA como herramienta» usa EXACTAMENTE el criterio de la seccion
+    // 02 —pide IA de uso y ninguna habilidad tecnica de IA— para que las dos
+    // secciones no den cifras distintas de la misma idea. Cambia la base (317
+    // aqui, 544 alla), nunca el numerador.
+    const toca = (v, f) => f.suelta
+      ? (v.sk.some(id => SKILLS[id]?.ia === 1) && !v.sk.some(id => SKILLS[id]?.ia === 2))
+      : cae(v, f);
 
     FUNCIONES.map(f => ({ f, k: conIA.filter(v => toca(v, f)).length }))
       .sort((a, b) => b.k - a.k)
