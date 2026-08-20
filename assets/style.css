@@ -240,7 +240,8 @@ a { color: inherit; }
 .barra__nav a[aria-current="true"] i { color: var(--champagne); font-weight: 700; }
 
 .barra__pie { padding: 0 .5rem; border-top: 0.5px solid var(--border); padding-top: .9rem; }
-.barra__pie p { margin: 0 0 .2rem; font-size: .6rem; text-transform: uppercase; letter-spacing: .2em; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); }
+.barra__pie p { margin: 0 0 .25rem; font-size: .58rem; text-transform: uppercase; letter-spacing: .18em; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); }
+.barra__pie strong { font-size: .82rem; font-weight: 700; color: var(--foreground); }
 .barra__pie a { font-size: .75rem; color: var(--muted-fg); text-decoration: none; }
 .barra__pie a:hover { color: var(--champagne); }
 

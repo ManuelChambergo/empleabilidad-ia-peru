@@ -22,7 +22,7 @@
 <meta name="twitter:title" content="¿Qué habilidades y perfiles está pidiendo el mercado peruano en IA?">
 <meta name="twitter:description" content="En los avisos peruanos de IA y datos, 3 de cada 10 son puestos de siempre que ahora exigen inteligencia artificial. 544 avisos analizados.">
 <meta name="twitter:image" content="https://manuelchambergo.github.io/empleabilidad-ia-peru/og.png">
-<link rel="stylesheet" href="assets/style.css?v=202608200054">
+<link rel="stylesheet" href="assets/style.css?v=202608200058">
 </head>
 <body>
 
@@ -54,8 +54,8 @@
   </nav>
 
   <div class="barra__pie">
-    <p>Datos abiertos</p>
-    <a href="https://github.com/ManuelChambergo/empleabilidad-ia-peru" target="_blank" rel="noopener">Código y datos ↗</a>
+    <p>Análisis y desarrollo</p>
+    <strong>Manuel Chambergo</strong>
   </div>
 </aside>
 
@@ -136,10 +136,11 @@
   <!-- ══ 01 ══ -->
   <section id="hallazgo" class="seccion">
     <p class="cejilla">01 · El hallazgo</p>
-    <h2>La IA no está creando empleo nuevo. Está <em>cambiando el que ya existe</em>.</h2>
+    <h2>La IA no solo crea puestos nuevos: también <em>cambia los que ya existen</em>.</h2>
     <p class="seccion__intro">
-      La categoría que importa es la segunda: puestos que existían mucho antes de
-      esta ola y que hoy exigen IA como un requisito más.
+      Casi tres de cada diez avisos son puestos que existían mucho antes de esta ola
+      —analistas, jefes de proyecto, especialistas— y que hoy exigen IA como un
+      requisito más.
     </p>
 
     <figure class="tarjeta glass-strong spotlight">
@@ -309,7 +310,7 @@
     <figure class="tarjeta glass-strong spotlight">
       <figcaption class="tarjeta__cab">
         <h3>Las que manejas</h3>
-        <p class="tarjeta__n">las <span id="cat-n">28</span> habilidades concretas más pedidas de toda la muestra</p>
+        <p class="tarjeta__n">las <span id="cat-n">28</span> habilidades más pedidas de toda la muestra</p>
       </figcaption>
 
       <ul class="chips" id="chips-perfil"></ul>
@@ -336,9 +337,9 @@
       <details class="nota">
         <summary>Qué significa «encajar»</summary>
         <div><p>De cada aviso miramos solo las habilidades
-        que están en este catálogo. Encajas con un aviso cuando manejas
+        que están en esta lista. Encajas con un aviso cuando manejas
         <em>al menos dos de cada tres</em> de las que pide. Los avisos que no
-        nombran ninguna habilidad del catálogo quedan fuera del cálculo, porque no
+        nombran ninguna de estas habilidades quedan fuera del cálculo, porque no
         hay con qué compararte. Es una aproximación para orientarte, no un
         veredicto de empleabilidad: ningún aviso se gana o se pierde por una lista
         de palabras.</p></div>
@@ -375,7 +376,7 @@
       <figure class="tarjeta glass-strong spotlight">
         <figcaption class="tarjeta__cab">
           <h3>Sectores que más publican</h3>
-          <p class="tarjeta__n">rubro inferido de la empresa</p>
+          <p class="tarjeta__n">sector al que pertenece la empresa</p>
         </figcaption>
         <div class="rank" id="rank-sector"></div>
         <details class="nota">
@@ -453,7 +454,7 @@
     <figure class="tarjeta glass-strong spotlight">
       <figcaption class="tarjeta__cab">
         <h3>A qué nivel están contratando</h3>
-        <p class="tarjeta__n"><span data-n="niv">544</span> avisos · nivel derivado del título del puesto</p>
+        <p class="tarjeta__n"><span data-n="niv">544</span> avisos · según el título del puesto</p>
       </figcaption>
       <div class="rank" id="rank-nivel"></div>
     </figure>
@@ -479,16 +480,15 @@
           clave de IA y datos, en español y en inglés.
         </p>
         <p>
-          <strong>Ojo con el denominador.</strong> La muestra se construyó buscando
-          esas palabras clave, así que <em>toda</em> la muestra es del mundo de la IA
-          y los datos. Cuando el sitio dice «3 de cada 10 avisos», se refiere a 3 de
-          cada 10 <em>de esta muestra</em>, no del empleo peruano en general.
+          <strong>Qué universo cubre.</strong> Al partir de esas palabras clave, la
+          muestra recoge el mundo de la IA y los datos dentro del empleo peruano
+          formal. Los porcentajes del sitio se leen sobre ese universo: cuando dice
+          «3 de cada 10 avisos», son 3 de cada 10 de esta muestra.
         </p>
-        <ul>
-          <li><strong>Se filtran las convocatorias docentes</strong> («Docente»,
-            «Posgrado … Asignatura»): son universidades contratando profesores de
-            IA, no industria demandando IA.</li>
-        </ul>
+        <p>
+          Quedan fuera las convocatorias docentes, que son universidades contratando
+          profesores de IA y no empresas demandándola.
+        </p>
       </div>
       </details>
 
@@ -496,18 +496,16 @@
         <summary><h3>2 · Cómo se extrajo cada dato</h3></summary>
         <div>
         <p>
-          El modelo de lenguaje se usa <strong>solo donde aporta</strong>: leer la
-          prosa del aviso para extraer habilidades e inferir el rubro de la empresa.
-          Todo lo demás son reglas explícitas y auditables.
+          Cada dato se extrae con la herramienta que mejor le va, y el criterio está
+          escrito para los 544 avisos por igual.
         </p>
         <ul>
-          <li><strong>Habilidades y rubro →</strong> modelo de lenguaje. Hay
-            sinónimos, contexto y texto libre; una regla no llega.</li>
-          <li><strong>Nivel del puesto →</strong> reglas sobre el título, que
-            resultaron bastante más fiables que el modelo. El modelo solo decide
-            cuando el título no da ninguna señal.</li>
-          <li><strong>Deduplicar, consolidar y clasificar →</strong> código, no
-            modelo: son criterios explícitos que cualquiera puede auditar.</li>
+          <li><strong>Habilidades y sector →</strong> modelo de lenguaje, que es lo
+            que sabe leer sinónimos y texto libre.</li>
+          <li><strong>Nivel del puesto →</strong> reglas sobre el título del aviso.
+            El modelo interviene solo cuando el título no da ninguna señal.</li>
+          <li><strong>Agrupar y clasificar →</strong> reglas de código, para que el
+            criterio sea siempre el mismo y quede a la vista.</li>
         </ul>
       </div>
       </details>
@@ -516,12 +514,12 @@
         <summary><h3>3 · La limpieza</h3></summary>
         <div>
         <p>
-          Los datos en bruto traen errores que no saltan a la vista: producen cifras
-          que parecen razonables y están mal. Se corrigen cuatro, en orden:
-          <strong>avisos republicados</strong> que contarían varias veces, <strong>la
-          misma habilidad escrita de dos maneras</strong>, <strong>el nivel del
-          puesto</strong> y <strong>la clasificación de la oferta</strong>, para que
-          un lenguaje de programación no arrastre el aviso al grupo de la IA.
+          Antes de contar nada, los avisos pasan por cuatro correcciones:
+          se unifican los <strong>avisos republicados</strong> para que no cuenten
+          varias veces, se junta <strong>la misma habilidad escrita de dos
+          maneras</strong> («Inglés» y «English»), se fija <strong>el nivel del
+          puesto</strong> y se revisa <strong>la clasificación</strong>, de modo que
+          un lenguaje de programación no lleve el aviso al grupo de la IA.
         </p>
       </div>
       </details>
@@ -530,37 +528,38 @@
         <summary><h3>4 · Límites de la muestra</h3></summary>
         <div>
         <ul>
-          <li><strong>Muestra no probabilística.</strong> Dos portales, no un censo.
-            Sobre-representa empresas formales medianas y grandes; no cubre pymes,
-            bolsas internas ni el sector informal.</li>
+          <li><strong>Es una muestra, no un censo.</strong> Recoge lo que publican
+            las bolsas de trabajo: sobre todo empresas formales medianas y grandes.
+            No llega a pymes, a las bolsas internas de cada empresa ni al empleo
+            informal.</li>
           <li><strong>Un tercio son consultoras.</strong> 181 avisos (33,3%) vienen
             de consultoras y <i>staffing</i> regional, que contratan para clientes
             de fuera del país. El interruptor de arriba los saca del cálculo.</li>
-          <li><strong>Cinco términos quedaron sin buscar</strong>, entre ellos
-            <i>Computer Vision</i> y <i>NLP Engineer</i>. Esos dominios salen bajos
-            porque <strong>no se buscaron</strong>, que no es lo mismo que no
-            existir.</li>
-          <li><strong>Sesgo de idioma, corregido a medias.</strong> Las búsquedas en
-            inglés traían consultoras; las que se hicieron en español trajeron
-            mercado local. El balance sigue inclinado.</li>
-          <li><strong>Lectura automática del texto.</strong> Las habilidades salen de
-            leer cada aviso con un modelo de lenguaje, con los mismos criterios
-            aplicados a los 544. Como toda lectura automática, tiene su margen: un
-            aviso ambiguo puede quedar clasificado de forma discutible.</li>
+          <li><strong>Algunas especialidades están subrepresentadas.</strong> La
+            búsqueda no cubrió todos los términos posibles, así que áreas como
+            <i>Computer Vision</i> o <i>NLP</i> aparecen con menos avisos de los que
+            probablemente existen.</li>
+          <li><strong>El idioma de la búsqueda pesa.</strong> Los términos en inglés
+            traen sobre todo consultoras; los que se buscaron en español traen
+            empresas locales. La mezcla no está equilibrada del todo.</li>
+          <li><strong>La lectura es automática.</strong> Las habilidades salen de
+            procesar cada aviso con el mismo criterio, algo que a mano sería
+            inviable en 544 textos. A cambio, un aviso ambiguo puede quedar
+            clasificado de forma discutible.</li>
         </ul>
       </div>
       </details>
 
       <details class="tarjeta glass-strong">
-        <summary><h3>5 · Lo que esta muestra no sostiene</h3></summary>
+        <summary><h3>5 · Qué no se puede concluir</h3></summary>
         <div>
         <ul>
           <li><strong>«La demanda de IA creció X%».</strong> Es una foto de los
             avisos activos en una semana, no una serie temporal. No hay con qué
             comparar.</li>
           <li><strong>«El mercado peruano pide…».</strong> Los porcentajes describen
-            estos 544 avisos. Son un indicio del mercado formal de Lima con
-            presencia en portales, no el mercado.</li>
+            estos 544 avisos: una señal del empleo formal con presencia en portales,
+            sobre todo limeño.</li>
           <li><strong>«En provincia no piden IA».</strong> 127 avisos no declaran
             ciudad. La ausencia de dato no es dato.</li>
           <li><strong>«Este puesto paga X».</strong> 521 avisos sin salario.</li>
@@ -590,6 +589,6 @@
 
 </main>
 
-<script src="assets/app.js?v=202608200054"></script>
+<script src="assets/app.js?v=202608200058"></script>
 </body>
 </html>
