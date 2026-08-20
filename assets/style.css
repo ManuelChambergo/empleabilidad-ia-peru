@@ -149,8 +149,19 @@ a { color: inherit; }
 }
 .spotlight:hover::before { opacity: 1; }
 .text-gradient {
-  background: linear-gradient(135deg, oklch(0.15 0 0) 0%, oklch(0.62 0.10 75) 100%);
-  background-clip: text; -webkit-background-clip: text; color: transparent;
+  /* Los tres colores de marca girando despacio. El texto es el unico sitio
+     del sitio donde el color no significa nada, asi que aqui si puede jugar. */
+  background-image: linear-gradient(100deg,
+    var(--champagne) 0%, var(--cyan-tech) 25%, var(--forest) 50%,
+    var(--cyan-tech) 75%, var(--champagne) 100%);
+  background-size: 300% 100%;
+  background-clip: text; -webkit-background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: tono-deriva 9s ease-in-out infinite;
+}
+@keyframes tono-deriva {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
 .headline-sweep {
   background-image: linear-gradient(100deg, oklch(0.15 0 0) 0%, oklch(0.15 0 0) 40%, oklch(0.62 0.10 75) 50%, oklch(0.15 0 0) 60%, oklch(0.15 0 0) 100%);
@@ -268,7 +279,32 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 
 /* ── KPIs ───────────────────────────────────────────────────────── */
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr)); gap: .8rem; }
-.kpi { border-radius: var(--radius-xl); padding: 1rem 1.15rem 1.15rem; display: flex; flex-direction: column; gap: .35rem; }
+.kpi { border-radius: var(--radius-xl); padding: 1rem 1.15rem 1.15rem; display: flex; flex-direction: column; gap: .35rem;
+  /* cada tarjeta lleva el color de lo que mide, en un velo muy diluido */
+  position: relative;
+  background-image: linear-gradient(150deg,
+    color-mix(in oklab, var(--tono) 13%, transparent) 0%,
+    transparent 55%);
+}
+/* el orden sigue la semantica del sitio, no el gusto: cyan es IA, forest es
+   volumen de empresas, champagne es el hallazgo */
+.kpi:not(.conic-border) { overflow: hidden; }
+.kpi:nth-child(1) { --tono: var(--foreground); }
+.kpi:nth-child(2) { --tono: var(--forest); }
+.kpi:nth-child(3) { --tono: var(--champagne); }
+.kpi:nth-child(4) { --tono: var(--cyan-tech); }
+/* ::after y no ::before: la tarjeta destacada gasta su ::before en el borde
+   conico, y pisarselo la dejaba sin el. */
+.kpi::after {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: linear-gradient(90deg, var(--tono), transparent 85%);
+  opacity: .75; pointer-events: none;
+}
+.kpi:nth-child(2) .kpi__num { color: var(--forest); }
+.kpi:nth-child(3) .kpi__num { color: var(--champagne); }
+.kpi:nth-child(4) .kpi__num { color: var(--cyan-tech); }
+.kpi__rot { position: relative; }
 .kpi__rot { font-size: .625rem; text-transform: uppercase; letter-spacing: .15em; color: color-mix(in oklab, var(--muted-fg) 80%, transparent); line-height: 1.4; min-height: 2.2em; }
 .kpi--destaca .kpi__rot { color: var(--champagne); }
 .kpi__num { font-family: var(--font-display); font-size: 1.95rem; font-weight: 600; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -563,6 +599,7 @@ details.nota > div > p + p { margin-top: .6rem; }
 @media (prefers-reduced-motion: reduce) {
   body::before { animation: none; }
   .apilada__seg, .barra-it__relleno, .rank__relleno { transition: none; }
+  .text-gradient { animation: none; }
   .headline-sweep { animation: none; background: none; color: var(--foreground); -webkit-text-fill-color: currentColor; }
   .lift { transition: none; }
   .lift:hover { transform: none; }
