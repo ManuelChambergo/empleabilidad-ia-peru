@@ -128,12 +128,12 @@
   /** Familia visual de una habilidad. El color es el mismo en todo el sitio. */
   function familia(id) {
     const s = SKILLS[id];
-    if (!s) return { serie: "var(--serie-4)", nom: "Oficio de siempre" };
+    if (!s) return { serie: "var(--serie-4)", nom: "Habilidades de siempre" };
     if (s.ia === 2) return { serie: "var(--serie-1)", nom: "IA técnica" };
     if (s.ia === 1) return { serie: "var(--serie-2)", nom: "IA de uso" };
     if (s.ia === 3) return { serie: "var(--ia-vaga)", nom: "IA sin precisar" };
     if (s.c === "Datos") return { serie: "var(--serie-3)", nom: "Datos y analítica" };
-    return { serie: "var(--serie-4)", nom: "Oficio de siempre" };
+    return { serie: "var(--serie-4)", nom: "Habilidades de siempre" };
   }
 
   /** Cuenta avisos por habilidad. Devuelve [[id, k], …] de mayor a menor. */
