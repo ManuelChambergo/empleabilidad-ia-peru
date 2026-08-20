@@ -202,16 +202,31 @@ a { color: inherit; }
 
 .barra__nav { display: flex; flex-direction: column; gap: .1rem; flex: 1; overflow-y: auto; }
 .barra__nav a {
+  position: relative;
   display: flex; gap: .6rem; align-items: center;
-  padding: .5rem .65rem; border-radius: var(--radius-sm);
+  padding: .5rem .65rem .5rem .8rem; border-radius: var(--radius-sm);
   color: color-mix(in oklab, var(--foreground) 72%, transparent);
   text-decoration: none; font-size: .84rem;
   transition: background .18s, color .18s;
 }
+/* Marca de seccion activa: una barra champagne que crece desde el centro.
+   El fondo solo no bastaba —quedaba en un gris que se perdia contra Pearl—,
+   asi que el peso lo lleva el acento vertical. */
+.barra__nav a::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  width: 3px; height: 0; transform: translateY(-50%);
+  border-radius: 0 3px 3px 0; background: var(--champagne);
+  transition: height .22s cubic-bezier(.22,.7,.3,1);
+}
 .barra__nav a i { font-family: var(--font-mono); font-size: .64rem; font-style: normal; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); }
 .barra__nav a:hover { background: oklch(0.92 0.003 95 / 0.6); color: var(--foreground); }
-.barra__nav a[aria-current="true"] { background: var(--accent-bg); color: var(--foreground); font-weight: 500; }
-.barra__nav a[aria-current="true"] i { color: var(--champagne); }
+.barra__nav a:hover::before { height: 40%; background: color-mix(in oklab, var(--champagne) 45%, transparent); }
+.barra__nav a[aria-current="true"] {
+  background: linear-gradient(90deg, var(--champagne-soft), oklch(1 0 0 / 0));
+  color: var(--foreground); font-weight: 700;
+}
+.barra__nav a[aria-current="true"]::before { height: 62%; }
+.barra__nav a[aria-current="true"] i { color: var(--champagne); font-weight: 700; }
 
 .barra__pie { padding: 0 .5rem; border-top: 0.5px solid var(--border); padding-top: .9rem; }
 .barra__pie p { margin: 0 0 .2rem; font-size: .6rem; text-transform: uppercase; letter-spacing: .2em; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); }
