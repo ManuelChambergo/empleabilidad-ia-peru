@@ -623,6 +623,120 @@ details.nota > div > p + p { margin-top: .6rem; }
   .rank__it { grid-template-columns: 1.4rem minmax(6rem, 8rem) 1fr auto; gap: .5rem; }
 }
 
+/* ── Celular ────────────────────────────────────────────────────────
+   Buena parte del trafico llega por un enlace en LinkedIn o WhatsApp, o
+   sea en pantalla de mano. Lo que se corrige aqui es de tres tipos: lo que
+   se desbordaba a lo ancho, lo que quedaba demasiado chico para tocarse o
+   leerse, y el coste de pintar tanto cristal esmerilado en un telefono. */
+
+/* Seguro contra el desplazamiento lateral. `clip` y no `hidden`: hidden
+   convierte el body en contenedor de scroll y desactiva todo `sticky`. */
+body { overflow-x: clip; }
+
+/* Cualquier tabla larga se desliza dentro de su caja, no arrastra la pagina. */
+.tabla-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tabla-scroll table { min-width: 22rem; }
+
+@media (max-width: 48rem) {
+  /* El titular lleva <br> pensados para pantalla ancha; en el telefono esos
+     cortes dejan lineas huerfanas. Que el texto se acomode solo. */
+  .portada h1 br { display: none; }
+  /* La marca conserva su <br>: arriba la barra es horizontal y lo escaso
+     pasa a ser el ancho, no el alto. En dos lineas estorba menos. */
+  .barra__marca strong { font-size: .78rem; }
+  .barra { gap: .7rem; }
+  .portada h1 { font-size: clamp(1.45rem, 6.4vw, 2rem); }
+  .portada__bajada { font-size: .95rem; }
+
+  /* Cuatro KPIs apilados eran cuatro pantallas antes del primer hallazgo. */
+  .kpis { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .kpi { padding: .8rem .85rem .9rem; }
+  .kpi__num { font-size: 1.5rem; }
+  .kpi__rot { min-height: 3em; letter-spacing: .1em; }
+  .kpi__pie { font-size: .68rem; }
+
+  /* Los selectores de filtro se reparten el ancho en vez de quedarse en
+     9,25rem fijos, que en 360px dejaba media columna colgando. */
+  .filtros { gap: .75rem .9rem; padding: .8rem .9rem; }
+  .filtros__campos { width: 100%; gap: .5rem; }
+  .filtros__campos label { flex: 1 1 8rem; min-width: 0; }
+  .filtros select { width: 100%; max-width: none; min-height: 2.75rem; }
+  .filtros__acciones { width: 100%; flex-wrap: wrap; gap: .6rem .9rem; }
+  .limpiar { min-height: 2.75rem; }
+
+  /* Objetivos tactiles: la recomendacion es ~44px de lado. */
+  .barra__nav a { padding: .7rem .8rem; min-height: 2.75rem; font-size: .8rem; }
+  .chip { min-height: 2.6rem; padding: .45rem .85rem; }
+  .atajos a { min-height: 2.6rem; }
+  .tabla-alt summary, details.nota > summary { padding-block: .55rem; }
+  .metodo details.tarjeta > summary { padding: .7rem 0; }
+
+  /* La ficha tecnica sigue siendo la letra mas chica de la pagina, pero a
+     0,67rem en un telefono ya no se lee. Se le devuelve lo justo. */
+  .metodo p, .metodo li { font-size: .78rem; }
+  .metodo table, .metodo .datos { font-size: .74rem; }
+  .metodo .nota, .metodo details.nota > div { font-size: .74rem; }
+  #metodo .seccion__intro { font-size: .82rem; }
+  #metodo h2 { font-size: 1.15rem; }
+
+  /* El ranking: el numero de la derecha se comia el ancho de la barra. */
+  .rank__it { grid-template-columns: 1.2rem minmax(5rem, 1fr) 1.4fr auto; gap: .45rem; }
+  .rank__val { min-width: 3.4rem; font-size: .7rem; }
+  .rank__nom { font-size: .78rem; }
+
+  /* La matriz ya se desliza; el aviso evita que se lea como columna cortada. */
+  .matriz-caja { position: relative; }
+  .matriz-caja::after {
+    content: "Desliza →"; position: sticky; left: 0; bottom: 0;
+    display: block; width: max-content; margin-top: .35rem;
+    font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+    color: color-mix(in oklab, var(--muted-fg) 70%, transparent);
+  }
+
+  .golpe { gap: .5rem; padding: 1.25rem 1.1rem; }
+  .golpe__txt { font-size: .85rem; }
+  .diag__panel { padding: 1.1rem; }
+  .seccion__intro { font-size: .92rem; }
+  .tarjeta { padding: 1.15rem 1rem; }
+  .apilada__seg .apilada__rot { white-space: normal; }
+}
+
+/* Telefono estrecho: iPhone SE y Android de 360px. */
+@media (max-width: 26rem) {
+  main { padding-inline: 1rem; }
+  .kpis { grid-template-columns: 1fr; }
+  .kpi__num { font-size: 1.8rem; }
+  .kpi__rot { min-height: 0; }
+  .rank__it { grid-template-columns: 1.1rem minmax(4.5rem, 1fr) 1fr auto; }
+  .filtros__campos label { flex: 1 1 100%; }
+  .sello-muestra { font-size: .62rem; padding: .32rem .65rem; }
+  /* Nueve secciones que deslizar: el nombre cede su sitio al indice. */
+  .barra__marca strong { display: none; }
+  .barra__marca { padding-right: .25rem; }
+  .portada__cab { gap: .75rem; }
+}
+
+/* En un telefono el cristal esmerilado se paga en cada repintado: son
+   varias capas de blur a pantalla completa mas un degradado animado. Se
+   cambia por fondo solido, que es indistinguible a ese tamano y no
+   entrecorta el scroll. La animacion del fondo tambien se detiene. */
+@media (max-width: 48rem) {
+  .glass, .glass-strong, .barra, .sello-muestra, .atajos a, .chip, .limpiar, .filtros select {
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+  }
+  .glass { background: oklch(1 0 0 / 0.82); }
+  .glass-strong { background: oklch(1 0 0 / 0.94); }
+  .barra { background: oklch(0.97 0.003 95 / 0.97); }
+  body::before { animation: none; }
+}
+
+/* Sin raton no hay a que reaccionar: el foco que lo sigue y el levante al
+   pasar por encima son pintado de mas. Va por capacidad, no por ancho. */
+@media (hover: none) {
+  .spotlight::before { display: none; }
+  .lift:hover { transform: none; box-shadow: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body::before { animation: none; }
   .apilada__seg, .barra-it__relleno, .rank__relleno { transition: none; }
