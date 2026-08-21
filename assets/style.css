@@ -421,6 +421,7 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 .barra-it__n { font-size: .72rem; color: color-mix(in oklab, var(--muted-fg) 80%, transparent); font-variant-numeric: tabular-nums; }
 .barra-it__pista { height: 1.35rem; background: var(--muted); border-radius: var(--radius-sm); overflow: hidden; }
 .barra-it__relleno { height: 100%; border-radius: var(--radius-sm); width: 0; transition: width .9s cubic-bezier(.22,.7,.3,1); }
+.barra-it__glosa .ej { color: color-mix(in oklab, var(--muted-fg) 62%, transparent); }
 .barra-it__glosa { font-size: .74rem; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); margin: .35rem 0 0; line-height: 1.45; }
 
 /* ── Ranking compacto (habilidades, empresas, carreras) ─────────── */
