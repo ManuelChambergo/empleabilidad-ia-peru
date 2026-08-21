@@ -349,8 +349,15 @@
     }
     $("#golpe").hidden = false;
 
-    CUBOS_IA.forEach(c => {
-      const k = conCubo(vs, c.f), p = k / n * 100;
+    // De mayor a menor, no en el orden en que estan declaradas: tres barras
+    // con 52,6% en medio de 19,3% y 7,5% se leen como una lista desordenada.
+    // El color sigue atado a la categoria, asi que reordenar no confunde.
+    const cubos = CUBOS_IA
+      .map(c => ({ c, k: conCubo(vs, c.f) }))
+      .sort((a, b) => b.k - a.k);
+
+    cubos.forEach(({ c, k }) => {
+      const p = k / n * 100;
       const it = document.createElement("div");
       it.className = "barra-it";
       it.innerHTML =
@@ -575,6 +582,39 @@
       li.append(b);
       cont.append(li);
     });
+
+    // En telefono las 28 pastillas eran ocho filas: media pantalla de
+    // catalogo antes de ver el resultado que el catalogo produce. Se
+    // muestran las primeras y el resto se pide. En ancho caben todas y
+    // este boton no llega a dibujarse (CSS).
+    const VISIBLES = 12;
+    $$("li", cont).forEach((li, i) => {
+      if (i >= VISIBLES) li.classList.add("chip-extra");
+    });
+    const resto = CATALOGO.length - VISIBLES;
+    if (resto > 0) {
+      // Quien vuelve con perfil guardado tiene que ver lo que marco: si algo
+      // suyo cayo entre las ocultas, la lista arranca abierta.
+      const marcadaOculta = CATALOGO.slice(VISIBLES).some(id => MIAS.has(id));
+      cont.dataset.colapsado = marcadaOculta ? "false" : "true";
+      const li = document.createElement("li");
+      li.className = "chips__mas";
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip chip--mas";
+      const rotular = () => {
+        b.textContent = cont.dataset.colapsado === "true"
+          ? `Ver ${resto} más` : "Ver menos";
+        b.setAttribute("aria-expanded", cont.dataset.colapsado === "true" ? "false" : "true");
+      };
+      rotular();
+      b.addEventListener("click", () => {
+        cont.dataset.colapsado = cont.dataset.colapsado === "true" ? "false" : "true";
+        rotular();
+      });
+      li.append(b);
+      cont.append(li);
+    }
   }
 
   function guardarPerfil() {
@@ -782,8 +822,38 @@
     porId.forEach((_, id) => { const s = document.getElementById(id); if (s) obs.observe(s); });
   }
 
+  // ── menu de telefono ────────────────────────────────────────────────
+  // El indice de nueve secciones no cabe arriba en una pantalla de mano.
+  // En ancho el boton no existe (CSS) y esto no llega a estorbar.
+  function conectarMenu() {
+    const ham = $("#ham"), barra = $(".barra");
+    if (!ham || !barra) return;
+
+    const abrir = v => {
+      barra.dataset.abierta = v ? "true" : "false";
+      ham.setAttribute("aria-expanded", v ? "true" : "false");
+    };
+    abrir(false);
+
+    ham.addEventListener("click", () =>
+      abrir(ham.getAttribute("aria-expanded") !== "true"));
+
+    // Elegir una seccion cierra el menu: si se queda abierto tapa
+    // justamente el titular al que se acaba de saltar.
+    $("#barra-nav").addEventListener("click", e => {
+      if (e.target.closest("a")) abrir(false);
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && ham.getAttribute("aria-expanded") === "true") {
+        abrir(false); ham.focus();
+      }
+    });
+  }
+
   // ── arranque ────────────────────────────────────────────────────────
   conectarSpotlight();
+  conectarMenu();
   cargar().then(() => {
     poblarSelects();
     conectarControles();

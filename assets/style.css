@@ -200,6 +200,7 @@ a { color: inherit; }
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   border-right: 0.5px solid oklch(0.18 0 0 / 0.06);
 }
+.barra__ham { display: none; }
 .barra__marca { display: flex; gap: .65rem; align-items: center; padding: 0 .5rem .95rem; border-bottom: 0.5px solid var(--border); }
 .barra__sello {
   width: 2.3rem; height: 2.3rem; flex: none; border-radius: var(--radius);
@@ -453,6 +454,9 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 
 /* ── Diagnóstico ────────────────────────────────────────────────── */
 .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 1.35rem; padding: 0; list-style: none; }
+/* En ancho caben las 28 y no hay nada que plegar. */
+.chips__mas { display: none; }
+.chip--mas { border-style: dashed; color: var(--muted-fg); }
 .chip {
   font: inherit; font-size: .78rem; cursor: pointer;
   background: oklch(1 0 0 / 0.6); color: var(--foreground);
@@ -650,25 +654,46 @@ body { overflow-x: clip; }
   .barra__marca strong { display: none; }
   .barra__marca { padding: 0; }
   .barra__sello { width: 1.9rem; height: 1.9rem; margin-top: .15rem; }
-  /* Las nueve entradas se acomodan en dos filas en vez de deslizarse a lo
-     ancho. Un carrusel horizontal escondia seis secciones tras un gesto
-     que nadie adivina; asi el indice se ve entero de una, que es
-     justamente lo que dice de que va el estudio. La barra no esta fija:
-     cumple su papel al abrir y se va con el primer desplazamiento. */
-  .barra { overflow-x: visible; flex-wrap: wrap; align-items: flex-start; }
-  /* `flex: 1 1 auto` y no ancho completo: asi el sello no se queda solo en
-     una fila para el, y las pastillas empiezan a su derecha. */
-  .barra__nav { flex: 1 1 auto; flex-wrap: wrap; gap: .3rem; overflow: visible; }
-  .barra__nav a {
-    padding: .5rem .7rem; min-height: 2.35rem; font-size: .74rem;
-    border: 0.5px solid var(--border); border-radius: 99px;
-    background: oklch(1 0 0 / 0.5);
+  /* El indice de nueve secciones se pliega tras un boton. Desplegado
+     ocupaba tres filas de pastillas —media pantalla— antes del titular,
+     y en carrusel horizontal escondia seis secciones tras un gesto que
+     nadie adivina. Plegado deja la barra en una linea. */
+  .barra {
+    position: sticky; top: 0; overflow-x: visible; flex-wrap: wrap;
+    align-items: center; padding: .5rem .9rem; gap: .5rem;
   }
-  /* El acento vertical de seccion activa no cabe en una pastilla. */
-  .barra__nav a::before { display: none; }
-  .barra__nav a[aria-current="true"] {
-    background: var(--champagne); border-color: var(--champagne); color: #fff;
+  .barra__ham {
+    display: inline-flex; align-items: center; gap: .5rem; margin-left: auto;
+    font: inherit; font-size: .78rem; color: var(--foreground); cursor: pointer;
+    background: oklch(1 0 0 / 0.6); border: 0.5px solid var(--border-fuerte);
+    border-radius: 99px; padding: .45rem .85rem; min-height: 2.4rem;
   }
+  .barra__ham__icono {
+    width: .95rem; height: .62rem; flex: none;
+    border-top: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+    position: relative;
+  }
+  .barra__ham__icono::after {
+    content: ""; position: absolute; left: 0; right: 0; top: calc(50% - .75px);
+    border-top: 1.5px solid currentColor;
+  }
+  .barra[data-abierta="true"] .barra__ham { background: var(--champagne); border-color: var(--champagne); color: #fff; }
+  .barra[data-abierta="true"] .barra__ham__icono { border-color: transparent; }
+  .barra[data-abierta="true"] .barra__ham__icono::after { transform: rotate(45deg); }
+
+  .barra__nav { display: none; }
+  .barra[data-abierta="true"] .barra__nav {
+    display: flex; flex-direction: column; gap: .15rem;
+    flex: 1 1 100%; width: 100%; overflow-y: auto; max-height: 65vh;
+    padding-top: .5rem; margin-top: .3rem;
+    border-top: 0.5px solid var(--border);
+  }
+  .barra__nav a { padding: .75rem .8rem; min-height: 2.9rem; font-size: .85rem; }
+  /* Con la barra pegada arriba, el salto a una seccion dejaba su titulo
+     justo debajo de ella. Se le reserva su alto. */
+  .seccion { scroll-margin-top: 4rem; }
+  /* El numero de seccion vuelve: en vertical hay sitio y ordena la lista. */
+  .barra__nav a i { display: inline; }
   .portada h1 { font-size: clamp(1.45rem, 6.4vw, 2rem); }
   .portada__bajada { font-size: .95rem; }
 
@@ -690,7 +715,13 @@ body { overflow-x: clip; }
 
   /* Objetivos tactiles: la recomendacion es ~44px de lado. */
   .barra__nav a { padding: .7rem .8rem; min-height: 2.75rem; font-size: .8rem; }
-  .chip { min-height: 2.6rem; padding: .45rem .85rem; }
+  /* Pastillas de habilidad: a 2,6rem de alto y letra de cuerpo entero,
+     las 28 ocupaban ocho filas. Se comprimen y el resto se pide. */
+  .chip { min-height: 2.15rem; padding: .35rem .65rem; font-size: .72rem; }
+  .chip__n { font-size: .62rem; }
+  .chips { gap: .3rem; }
+  .chips[data-colapsado="true"] .chip-extra { display: none; }
+  .chips__mas { display: block; }
   .atajos a { min-height: 2.6rem; }
   .tabla-alt summary, details.nota > summary { padding-block: .55rem; }
   .metodo details.tarjeta > summary { padding: .7rem 0; }
@@ -747,7 +778,7 @@ body { overflow-x: clip; }
   }
   .glass { background: oklch(1 0 0 / 0.82); }
   .glass-strong { background: oklch(1 0 0 / 0.94); }
-  .barra { background: oklch(0.97 0.003 95 / 0.97); }
+  .barra { background: oklch(0.975 0.003 95); }
   body::before { animation: none; }
 }
 
