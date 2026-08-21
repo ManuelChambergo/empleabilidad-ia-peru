@@ -45,6 +45,11 @@
      Un cyan desvaido lo emparenta con la IA tecnica sin afirmar que lo sea. */
   --ia-vaga: color-mix(in oklab, var(--cyan-tech) 45%, oklch(0.82 0.01 220));
 
+  /* Azul tinta de los titulares. Deliberadamente lejos del --cyan-tech
+     (0.55/220), que en los graficos significa «puesto de IA»: si un titulo
+     se pintara de ese cyan se leeria como una serie mas. */
+  --titulo: oklch(0.33 0.09 250);
+
   /* Arial en los tres roles, por decision de Manuel. Se conservan las tres
      variables porque los tamanos y el tracking siguen siendo distintos segun
      el rol; lo unico que se unifico es la familia. */
@@ -164,7 +169,7 @@ a { color: inherit; }
   50%      { background-position: 100% 50%; }
 }
 .headline-sweep {
-  background-image: linear-gradient(100deg, oklch(0.15 0 0) 0%, oklch(0.15 0 0) 40%, oklch(0.62 0.10 75) 50%, oklch(0.15 0 0) 60%, oklch(0.15 0 0) 100%);
+  background-image: linear-gradient(100deg, var(--titulo) 0%, var(--titulo) 40%, oklch(0.62 0.10 75) 50%, var(--titulo) 60%, var(--titulo) 100%);
   background-size: 200% 100%; background-position: 100% 0;
   background-clip: text; -webkit-background-clip: text; color: transparent;
   animation: sweep-once 2.4s ease-out .3s 1 both;
@@ -377,6 +382,7 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 .seccion h2 {
   font-family: var(--font-display); font-size: clamp(1.45rem, 2.9vw, 2.05rem);
   font-weight: 700; letter-spacing: -.02em; max-width: 30ch; margin: .75rem 0 1rem;
+  color: var(--titulo);
 }
 .seccion h2 em { font-style: italic; }
 .seccion h2 .num { font-size: .55em; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); margin-right: .5rem; font-weight: 400; }
@@ -418,6 +424,9 @@ main { margin-left: var(--barra-w); padding: 0 clamp(1.25rem, 3.5vw, 3rem) 5rem;
 .barras { display: flex; flex-direction: column; gap: 1rem; }
 .barra-it__cab { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .35rem; }
 .barra-it__nom { font-size: .88rem; font-weight: 500; }
+/* Las siete actividades son la respuesta de la seccion, no una etiqueta
+   de eje: van en negrita para que se lean antes que su porcentaje. */
+#barras-fn .barra-it__nom { font-weight: 700; }
 .barra-it__val { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 .barra-it__n { font-size: .72rem; color: color-mix(in oklab, var(--muted-fg) 80%, transparent); font-variant-numeric: tabular-nums; }
 .barra-it__pista { height: 1.35rem; background: var(--muted); border-radius: var(--radius-sm); overflow: hidden; }
@@ -793,7 +802,7 @@ body { overflow-x: clip; }
   body::before { animation: none; }
   .apilada__seg, .barra-it__relleno, .rank__relleno { transition: none; }
   .text-gradient { animation: none; }
-  .headline-sweep { animation: none; background: none; color: var(--foreground); -webkit-text-fill-color: currentColor; }
+  .headline-sweep { animation: none; background: none; color: var(--titulo); -webkit-text-fill-color: currentColor; }
   .lift { transition: none; }
   .lift:hover { transform: none; }
 }
