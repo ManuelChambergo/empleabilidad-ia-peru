@@ -542,7 +542,7 @@ details.nota > div > p + p { margin-top: .6rem; }
 }
 .metodo details.tarjeta > summary::-webkit-details-marker { display: none; }
 .metodo details.tarjeta > summary h3 {
-  font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin: 0;
+  font-family: var(--font-display); font-size: .88rem; font-weight: 700; margin: 0;
 }
 .metodo details.tarjeta > summary::after {
   content: "+"; margin-left: auto; font-family: var(--font-mono); color: var(--muted-fg);
@@ -568,8 +568,14 @@ details.nota > div > p + p { margin-top: .6rem; }
 .datos th { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: color-mix(in oklab, var(--muted-fg) 85%, transparent); font-weight: 500; }
 
 .metodo { display: grid; gap: 1rem; }
-.metodo h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: .5rem; }
-.metodo p, .metodo li { font-size: .85rem; color: var(--muted-fg); }
+/* Letra deliberadamente pequena: es el respaldo del sitio, no debe competir
+   con las secciones de hallazgos. */
+.metodo h3 { font-family: var(--font-display); font-size: .88rem; margin-bottom: .5rem; }
+.metodo p, .metodo li { font-size: .72rem; line-height: 1.65; color: var(--muted-fg); }
+#metodo .seccion__intro { font-size: .8rem; }
+.metodo details.tarjeta > summary::after { font-size: .82rem; }
+.metodo table, .metodo .datos { font-size: .7rem; }
+.metodo .nota, .metodo details.nota > div { font-size: .68rem; }
 .metodo ul { margin: .5rem 0 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: .45rem; }
 .metodo strong { color: var(--foreground); }
 
